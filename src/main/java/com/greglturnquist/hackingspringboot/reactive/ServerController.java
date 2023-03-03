@@ -7,8 +7,14 @@ import reactor.core.publisher.Flux;
 
 @RestController
 public class ServerController {
+    private final KitchenService kitchen;
+
+    public ServerController(KitchenService kitchen) {
+        this.kitchen = kitchen;
+    }
     @GetMapping(value = "/server", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     Flux<Dish> getDishes() {
-        return Flux.just(new Dish(), new Dish(), new Dish());
+        return this.kitchen.getDishes();
     }
+
 }
