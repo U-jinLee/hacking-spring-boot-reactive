@@ -2,6 +2,15 @@ management:
   endpoint:
     health:
       show-details: always
+  endpoints:
+    web:
+      # 기본 경로 수정 (기본값: /actuator -> /manage)
+      base-path: /manage
+      path-mapping:
+        # 지정된 경로값 변경 (기본값: /manage/loggers -> /manage/logs)
+        loggers: /logs
+      exposure:
+        include: beans,health,info,loggers,mappings,shutdown
 
 info:
   project:
